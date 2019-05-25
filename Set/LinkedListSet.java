@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 
 public class LinkedListSet<E> implements Set<E> {
 	
@@ -10,7 +9,7 @@ public class LinkedListSet<E> implements Set<E> {
 	
 	@Override
 	public int getSize() {
-		return list.size();
+		return list.getSize();
 	}
 	
 	@Override
@@ -32,6 +31,6 @@ public class LinkedListSet<E> implements Set<E> {
 	
 	@Override
 	public void remove(E e) {
-		list.remove(e);
+		list.removeElement(e);
 	}
 }
