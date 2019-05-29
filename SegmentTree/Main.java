@@ -11,7 +11,10 @@ public class Main {
 //                    }
 //                });
 
-        SegmentTree<Integer> segTree = new SegmentTree<>(nums, (a, b) -> Math.max(a, b));
+        SegmentTree<Integer> segTree = new SegmentTree<>(nums, (a, b) -> a + b);
         System.out.println(segTree);
+        
+        System.out.println("-------------");
+        System.out.println(segTree.query(2, 4));
     }
 }
