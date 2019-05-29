@@ -82,6 +82,56 @@ public class SegmentTree<E> {
     private int rightChild(int index){
         return 2*index + 2;
     }
+    
+    
+    /**
+     * 查询[2, 5]
+                              A[0...7]
+              查询[2, 3]          /            \      查询[4, 5]
+                     A[0...3]        A[4...7]
+                     /     \  查询  查询   /     \
+                A[0...1]  A[2...3] A[4...5]  A[6...7]
+                /     \    /   \     /   \    /    \
+               A[0]  A[1] A[2] A[3] A[4] A[5] A[6] A[7]
+
+     * */
+    //返回区间[queryL, queryR]前闭后闭的值
+    public E query(int queryL, int queryR) {
+    	
+    	//边界检查
+    	if(queryL < 0 || queryL >= data.length || queryR < 0 || queryR >= data.length || queryL > queryR) {
+    		throw new IllegalArgumentException("Index is illegal.");
+    	}
+    	
+    	return query(0, 0, data.length - 1, queryL, queryR);
+    }
+    
+    //在以treeIndex为根的线段树中[l...r]的范围里，搜索区间[queryL...queryR]的值
+    //这里l = 0, r = data.length - 1
+    private E query(int treeIndex, int l, int r, int queryL, int queryR) {
+    	
+    	//base case
+    	if(l == queryL && r == queryR) {
+    		return tree[treeIndex];
+    	}
+    	
+    	//recursive rules
+    	//分为三种，向左找，向右找，左右都有
+    	int mid = l + (r - l) / 2;
+    	int leftTreeIndex = leftChild(treeIndex);
+    	int rightTreeIndex = rightChild(treeIndex);
+    	
+    	if(queryL >= mid + 1) {		//一头扎向右孩子
+    		return query(rightTreeIndex, mid + 1, r, queryL, queryR);
+    	}else if(queryR <= mid) {	//一头扎向左孩子
+    		return query(leftTreeIndex, l, mid, queryL, queryR);
+    	}
+    	
+    	//左孩子和有孩子都有的时候
+    	E leftResult = query(leftTreeIndex, l, mid, queryL, mid);
+    	E rightResult = query(rightTreeIndex, mid + 1, r, mid + 1, queryR);
+    	return merger.merge(leftResult, rightResult);
+    }
 
     @Override
     public String toString(){
