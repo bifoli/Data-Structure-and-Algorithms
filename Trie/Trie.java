@@ -95,4 +95,19 @@ public class Trie {
 		//所以正确的返回值应该是cur.isWord，此时n所在的cur.isWord是false，所以返回false
 		return cur.isWord;
 	}
+	
+	//查询是否在Trie中有单词以prefix为前缀，一个单词也是一个单词的前缀，比如cat是cat的前缀
+	public boolean isPrefix(String prefix) {
+		
+		Node cur = root;
+		for(int i = 0; i < prefix.length(); i++) {
+			char c = prefix.charAt(i);
+			if(cur.next.get(c) == null) {
+				return false;
+			}
+			cur = cur.next.get(c);
+		}
+		//此处和contains不同的是，只需要找到prefix里面的几个字母就可以了，不需要管它是不是一个单词isWord
+		return true;
+	}
 }
