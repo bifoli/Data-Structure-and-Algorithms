@@ -18,7 +18,6 @@ public class Main {
 		//words.add("pan");
 		words.add("panda");
 		System.out.println(words.contains("black"));
-		System.out.println(words.is);
 	}
 
 }
