@@ -23,6 +23,10 @@ public class Main {
 		
 		System.out.println("is BST: " + map.isBST());
 		System.out.println("is Balanced: " + map.isBalanced());
+		
+		map.remove(2);
+		System.out.println("is BST: " + map.isBST());
+		System.out.println("is Balanced: " + map.isBalanced());
 	}
 
 }
