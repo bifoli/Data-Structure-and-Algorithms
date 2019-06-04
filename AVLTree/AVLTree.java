@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+﻿import java.util.ArrayList;
 
 /**
  * 如图所示，这样的一个二叉树不是一个平衡二叉树，因为平衡二叉树对于任意一个节点，
@@ -138,7 +138,7 @@ public class AVLTree<K extends Comparable<K>, V> {
      * 3. LR
      *            y                                  y
      *          /   \                              /   \
-     *         x     T4     对x进行左旋转                    z     T4   再进行后续右旋转LL
+     *         x     T4     对x进行左旋转 z     T4   再进行后续右旋转LL
      *       /   \         -------------->       / \        ----------------->
      *      T1    z                            x    T3
      *           /  \                         /  \
@@ -146,7 +146,7 @@ public class AVLTree<K extends Comparable<K>, V> {
      * 
      * 4. RL
      *             y                                 y
-     *          /    \       对x进行右旋转                   /          \              再进行后续左旋转RR
+     *          /    \       对x进行右旋转  /          \              再进行后续左旋转RR
      *         T1     x     -------------->      T1      z     ------------------->
      *              /  \                               /   \
      *             z    T4                            T2    x
